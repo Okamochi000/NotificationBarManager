@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// ’Ê’mƒo[
+/// é€šçŸ¥ãƒãƒ¼
 /// </summary>
 public class NotificationBar : OpenAndCloseBase
 {
     /// <summary>
-    /// ŠJ•ÂƒAƒjƒ[ƒVƒ‡ƒ“î•ñ
+    /// é–‹é–‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±
     /// </summary>
     [System.Serializable]
     private struct AnimParam
@@ -45,7 +45,7 @@ public class NotificationBar : OpenAndCloseBase
         if (IsHighSpeed) { speed_ = highSpeed; }
         else { speed_ = 1.0f; }
 
-        // ˆê’èŠÔŒo‰ß‚µ‚½‚ç•Â‚¶‚é
+        // ä¸€å®šæ™‚é–“çµŒéã—ãŸã‚‰é–‰ã˜ã‚‹
         if (CurrentOpenState == OpenState.Opened)
         {
             playTime_ += (Time.deltaTime * speed_);
@@ -56,13 +56,13 @@ public class NotificationBar : OpenAndCloseBase
             }
         }
 
-        // ŠJ•ÂƒAƒjƒ[ƒVƒ‡ƒ“
+        // é–‹é–‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
         if (openAnimType != OpenAnimType.Script) { return; }
         if (CurrentOpenState == OpenState.OpenAnim)
         {
-            // ŠJ‚­ƒAƒjƒ[ƒVƒ‡ƒ“
+            // é–‹ãã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 
-            // ƒTƒCƒYXV
+            // ã‚µã‚¤ã‚ºæ›´æ–°
             float nextPlayTime = playTime_ + Time.deltaTime * speed_;
             if (playTime_ < openParam.scaleTime)
             {
@@ -77,27 +77,27 @@ public class NotificationBar : OpenAndCloseBase
                 }
             }
 
-            // ƒtƒF[ƒhXV
+            // ãƒ•ã‚§ãƒ¼ãƒ‰æ›´æ–°
             playTime_ = nextPlayTime;
             if (nextPlayTime >= openParam.scaleTime)
             {
                 if (openParam.fadeTime == 0.0f || nextPlayTime >= (openParam.scaleTime + openParam.fadeTime))
                 {
-                    // ƒtƒF[ƒhI—¹
+                    // ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
                     ChangeOpenState(OpenState.Opened);
                 }
                 else
                 {
-                    // ƒtƒF[ƒhXV
+                    // ãƒ•ã‚§ãƒ¼ãƒ‰æ›´æ–°
                     canvasGroup_.alpha = (nextPlayTime - openParam.scaleTime) / openParam.fadeTime;
                 }
             }
         }
         else if (CurrentOpenState == OpenState.CloseAnim)
         {
-            // •Â‚¶‚éƒAƒjƒ[ƒVƒ‡ƒ“
+            // é–‰ã˜ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 
-            // ƒtƒF[ƒhXV
+            // ãƒ•ã‚§ãƒ¼ãƒ‰æ›´æ–°
             float nextPlayTime = playTime_ + Time.deltaTime * speed_;
             if (playTime_ < closeParam.fadeTime)
             {
@@ -109,18 +109,18 @@ public class NotificationBar : OpenAndCloseBase
                 }
             }
 
-            // ƒTƒCƒYXV
+            // ã‚µã‚¤ã‚ºæ›´æ–°
             playTime_ = nextPlayTime;
             if (nextPlayTime >= closeParam.fadeTime)
             {
                 if (closeParam.scaleTime == 0.0f)
                 {
-                    // •Â‚¶‚é
+                    // é–‰ã˜ã‚‹
                     ChangeOpenState(OpenState.Closed);
                 }
                 else
                 {
-                    // ƒTƒCƒYXV
+                    // ã‚µã‚¤ã‚ºæ›´æ–°
                     Vector2 sizeDelta = selfRectTransform_.sizeDelta;
                     float easingIntarval = 1.0f - Mathf.Min((nextPlayTime - closeParam.fadeTime), closeParam.scaleTime) / closeParam.scaleTime;
                     sizeDelta.y = tempHeight_ * Easing(easingIntarval, 1.0f);
@@ -132,7 +132,7 @@ public class NotificationBar : OpenAndCloseBase
     }
 
     /// <summary>
-    /// ƒ^ƒCƒgƒ‹‚ğİ’è‚·‚é
+    /// ã‚¿ã‚¤ãƒˆãƒ«ã‚’è¨­å®šã™ã‚‹
     /// </summary>
     /// <param name="title"></param>
     public void SetTitle(string title)
@@ -144,7 +144,7 @@ public class NotificationBar : OpenAndCloseBase
     }
 
     /// <summary>
-    /// ƒƒbƒZ[ƒW‚ğİ’è‚·‚é
+    /// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¨­å®šã™ã‚‹
     /// </summary>
     /// <param name="message"></param>
     public void SetMessage(string message)
@@ -156,7 +156,7 @@ public class NotificationBar : OpenAndCloseBase
     }
 
     /// <summary>
-    /// ŠJ•Âó‘Ô•ÏXƒR[ƒ‹ƒoƒbƒN
+    /// é–‹é–‰çŠ¶æ…‹å¤‰æ›´ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     /// </summary>
     /// <param name="state"></param>
     protected override void OnChangedOpenState(OpenState state)
@@ -217,7 +217,7 @@ public class NotificationBar : OpenAndCloseBase
     }
 
     /// <summary>
-    /// ƒC[ƒWƒ“ƒOŒã‚Ì’l‚ğæ“¾
+    /// ã‚¤ãƒ¼ã‚¸ãƒ³ã‚°å¾Œã®å€¤ã‚’å–å¾—
     /// </summary>
     /// <param name="t"></param>
     /// <returns></returns>

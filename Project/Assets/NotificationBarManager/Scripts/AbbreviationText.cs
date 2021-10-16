@@ -1,33 +1,33 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// È—ªƒeƒLƒXƒg
+/// çœç•¥ãƒ†ã‚­ã‚¹ãƒˆ
 /// </summary>
 public class AbbreviationText : UnityEngine.EventSystems.UIBehaviour
 {
     /// <summary>
-    /// È—ªŠî€
+    /// çœç•¥åŸºæº–
     /// </summary>
     public enum LimitType
     {
-        ParentRect, // eƒTƒCƒY‚ğ’´‚¦‚é‚Æ‚«ƒXƒNƒ[ƒ‹
-        WordCount   // w’è•¶š”‚ğ’´‚¦‚é‚Æ‚«ƒXƒNƒ[ƒ‹
+        ParentRect, // è¦ªã‚µã‚¤ã‚ºã‚’è¶…ãˆã‚‹ã¨ãã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+        WordCount   // æŒ‡å®šæ–‡å­—æ•°ã‚’è¶…ãˆã‚‹ã¨ãã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
     }
 
     public Text TargetText { get { return targetText; } }
 
     [SerializeField] private Text targetText = null;
     [SerializeField] private LimitType limitType = LimitType.ParentRect;
-    [SerializeField] private string abbreviationLastText = "c";
+    [SerializeField] private string abbreviationLastText = "â€¦";
     [SerializeField] [Min(1)] private int characterLimit = 8;
 
     private string originalText_ = "";
 
     /// <summary>
-    /// ƒeƒLƒXƒgİ’è
+    /// ãƒ†ã‚­ã‚¹ãƒˆè¨­å®š
     /// </summary>
     /// <param name="text"></param>
     public void SetText(string text)
@@ -41,7 +41,7 @@ public class AbbreviationText : UnityEngine.EventSystems.UIBehaviour
 
         if (limitType == LimitType.ParentRect)
         {
-            // ƒTƒCƒY‚ğ’´‚¦‚éê‡‚ÍÈ—ª‚·‚é
+            // ã‚µã‚¤ã‚ºã‚’è¶…ãˆã‚‹å ´åˆã¯çœç•¥ã™ã‚‹
             float maxHeight = targetText.rectTransform.rect.size.y;
             if (targetText.preferredHeight <= maxHeight) { return; }
 
@@ -55,14 +55,14 @@ public class AbbreviationText : UnityEngine.EventSystems.UIBehaviour
                 currentText += split;
                 targetText.text = currentText + abbreviationLastText;
 
-                // ‹óŠÔ‚É—]—T‚ª‚ ‚éê‡AŸ‚Ìˆê•¶‚ğ“Ç‚İ‚Ş
+                // ç©ºé–“ã«ä½™è£•ãŒã‚ã‚‹å ´åˆã€æ¬¡ã®ä¸€æ–‡ã‚’èª­ã¿è¾¼ã‚€
                 if (targetText.preferredHeight + targetText.fontSize * 2.0f <= maxHeight)
                 {
                     currentText += "\n";
                     continue;
                 }
 
-                // ‰üs‘O‚Ì•¶‚Ì“r’†‚ÅÈ—ª
+                // æ”¹è¡Œå‰ã®æ–‡ã®é€”ä¸­ã§çœç•¥
                 if (targetText.preferredHeight > maxHeight)
                 {
                     targetText.text = prevText;
@@ -97,7 +97,7 @@ public class AbbreviationText : UnityEngine.EventSystems.UIBehaviour
                     return;
                 }
 
-                // ‰üs’¼‘O‚Ìó‘Ô‚ÅÈ—ª
+                // æ”¹è¡Œç›´å‰ã®çŠ¶æ…‹ã§çœç•¥
                 targetText.text = currentText + "\n" + abbreviationLastText;
                 if (targetText.preferredHeight > maxHeight)
                 {
@@ -105,13 +105,13 @@ public class AbbreviationText : UnityEngine.EventSystems.UIBehaviour
                     return;
                 }
 
-                // ‰üsŒã‚Ìó‘Ô‚ÅÈ—ª
+                // æ”¹è¡Œå¾Œã®çŠ¶æ…‹ã§çœç•¥
                 if ((i + 1) == splits.Length)
                 {
                     return;
                 }
 
-                // ‰üsŒã‚Ì•¶‚Ì“r’†‚ÅÈ—ª
+                // æ”¹è¡Œå¾Œã®æ–‡ã®é€”ä¸­ã§çœç•¥
                 {
                     currentText += "\n";
                     split = splits[(i + 1)];
@@ -150,7 +150,7 @@ public class AbbreviationText : UnityEngine.EventSystems.UIBehaviour
         }
         else if (limitType == LimitType.WordCount)
         {
-            // §ŒÀ•¶š”ˆÈã‚È‚çÈ—ª‚·‚é
+            // åˆ¶é™æ–‡å­—æ•°ä»¥ä¸Šãªã‚‰çœç•¥ã™ã‚‹
             if (originalText_.Length > characterLimit)
             {
                 string abbreviationtext = originalText_.Substring(0, characterLimit);
@@ -160,7 +160,7 @@ public class AbbreviationText : UnityEngine.EventSystems.UIBehaviour
     }
 
     /// <summary>
-    /// ƒeƒLƒXƒgæ“¾
+    /// ãƒ†ã‚­ã‚¹ãƒˆå–å¾—
     /// </summary>
     /// <returns></returns>
     public string GetOriginalText()

@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ŠJ•Âƒx[ƒX
+/// é–‹é–‰ãƒ™ãƒ¼ã‚¹
 /// </summary>
 public class OpenAndCloseBase : MonoBehaviour
 {
     /// <summary>
-    /// ŠJ•Âó‘Ô
+    /// é–‹é–‰çŠ¶æ…‹
     /// </summary>
     public enum OpenState
     {
@@ -19,7 +19,7 @@ public class OpenAndCloseBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ŠJ•ÂƒAƒjƒ[ƒVƒ‡ƒ“‚Ìí—Ş
+    /// é–‹é–‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç¨®é¡
     /// </summary>
     protected enum OpenAnimType
     {
@@ -29,7 +29,7 @@ public class OpenAndCloseBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ŠJ•Â‘€ì‚Ìí—Ş
+    /// é–‹é–‰æ“ä½œã®ç¨®é¡
     /// </summary>
     private enum OpenActionType
     {
@@ -47,7 +47,7 @@ public class OpenAndCloseBase : MonoBehaviour
 
     public virtual void OnEnable()
     {
-        // Open‚ğg—p‚µ‚È‚¢‚Æ‚«‚Ì©“®ŠJ•Â
+        // Openã‚’ä½¿ç”¨ã—ãªã„ã¨ãã®è‡ªå‹•é–‹é–‰
         if (isAutoActive)
         {
             if (this.gameObject.activeSelf && CurrentOpenState == OpenState.Closed)
@@ -59,7 +59,7 @@ public class OpenAndCloseBase : MonoBehaviour
 
     public virtual void OnDisable()
     {
-        // Close‚ğg—p‚µ‚È‚¢‚Æ‚«‚Ì©“®ŠJ•Â
+        // Closeã‚’ä½¿ç”¨ã—ãªã„ã¨ãã®è‡ªå‹•é–‹é–‰
         if (isAutoActive)
         {
             if (!this.gameObject.activeSelf)
@@ -78,7 +78,7 @@ public class OpenAndCloseBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ŠJ‚­
+    /// é–‹ã
     /// </summary>
     public void Open()
     {
@@ -90,7 +90,7 @@ public class OpenAndCloseBase : MonoBehaviour
             {
                 if (openAnimType == OpenAnimType.None)
                 {
-                    // ƒAƒjƒ[ƒVƒ‡ƒ“–³‚µ
+                    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç„¡ã—
                     ChangeOpenState(OpenState.Opened, true);
                 }
                 else if (openAnimType == OpenAnimType.Animator)
@@ -112,7 +112,7 @@ public class OpenAndCloseBase : MonoBehaviour
     }
 
     /// <summary>
-    /// •Â‚¶‚é
+    /// é–‰ã˜ã‚‹
     /// </summary>
     public void Close()
     {
@@ -124,7 +124,7 @@ public class OpenAndCloseBase : MonoBehaviour
             {
                 if (openAnimType == OpenAnimType.None)
                 {
-                    // ƒAƒjƒ[ƒVƒ‡ƒ“–³‚µ
+                    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç„¡ã—
                     ChangeOpenState(OpenState.Closed, true);
                 }
                 else if (openAnimType == OpenAnimType.Animator)
@@ -146,7 +146,7 @@ public class OpenAndCloseBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ŠJ•Âó‘Ô‚ğæ“¾‚·‚é
+    /// é–‹é–‰çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
     /// </summary>
     /// <returns></returns>
     public bool IsOpen()
@@ -155,7 +155,7 @@ public class OpenAndCloseBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ŠJ•Âó‘ÔØ‘Ö
+    /// é–‹é–‰çŠ¶æ…‹åˆ‡æ›¿
     /// </summary>
     /// <param name="state"></param>
     /// <param name="isCallback"></param>
@@ -163,20 +163,20 @@ public class OpenAndCloseBase : MonoBehaviour
     {
         if (CurrentOpenState != state)
         {
-            // ŠJ•Âó‘ÔØ‘Ö
+            // é–‹é–‰çŠ¶æ…‹åˆ‡æ›¿
             CurrentOpenState = state;
 
-            // •\¦ó‘ÔØ‘Ö
+            // è¡¨ç¤ºçŠ¶æ…‹åˆ‡æ›¿
             if (isAutoActive)
             {
                 if (CurrentOpenState == OpenState.OpenAnim) { this.gameObject.SetActive(true); }
                 else if (CurrentOpenState == OpenState.Closed) { this.gameObject.SetActive(false); }
             }
 
-            // ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ
+            // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—
             if (isCallback) { OnChangedOpenState(state); }
 
-            // Ÿ‚Ì‘€ìŒÄ‚Ño‚µ
+            // æ¬¡ã®æ“ä½œå‘¼ã³å‡ºã—
             if (CurrentOpenState == OpenState.Opened)
             {
                 if (nextOpenAction_ == OpenActionType.Close) { Close(); }
@@ -191,13 +191,13 @@ public class OpenAndCloseBase : MonoBehaviour
     }
 
     /// <summary>
-    /// ŠJ•Âó‘Ô•ÏXƒR[ƒ‹ƒoƒbƒN
+    /// é–‹é–‰çŠ¶æ…‹å¤‰æ›´ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     /// </summary>
     /// <param name="state"></param>
     protected virtual void OnChangedOpenState(OpenState state) { }
 
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“ƒgƒŠƒK[
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒˆãƒªã‚¬ãƒ¼
     /// </summary>
     /// <param name="eventName"></param>
     private void OnAnimationTrigger(string eventName)

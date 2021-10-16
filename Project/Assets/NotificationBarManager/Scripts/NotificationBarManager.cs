@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// ’Ê’mƒo[ŠÇ—
+/// é€šçŸ¥ãƒãƒ¼ç®¡ç†
 /// </summary>
 public class NotificationBarManager : MonoBehaviourSingleton<NotificationBarManager>
 {
@@ -20,7 +20,7 @@ public class NotificationBarManager : MonoBehaviourSingleton<NotificationBarMana
     // Update is called once per frame
     void Update()
     {
-        // I—¹‚µ‚½’Ê’m‚ğíœ‚·‚é
+        // çµ‚äº†ã—ãŸé€šçŸ¥ã‚’å‰Šé™¤ã™ã‚‹
         activeNotification_.Remove(null);
         NotificationBar[] notifications = activeNotification_.ToArray();
         foreach (NotificationBar notification in notifications)
@@ -32,7 +32,7 @@ public class NotificationBarManager : MonoBehaviourSingleton<NotificationBarMana
             }
         }
 
-        // Ÿ‚Ì’Ê’m‚ğ•\¦‚·‚é
+        // æ¬¡ã®é€šçŸ¥ã‚’è¡¨ç¤ºã™ã‚‹
         while (activeNotification_.Count < viewMaxCount && notificationQueue_.Count > 0)
         {
             NotificationBar notification = notificationQueue_.Dequeue();
@@ -43,7 +43,7 @@ public class NotificationBarManager : MonoBehaviourSingleton<NotificationBarMana
             }
         }
 
-        // ƒXƒs[ƒhİ’è
+        // ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®š
         bool isHighSpeed = false;
         if ((notificationQueue_.Count + activeNotification_.Count) >= highSpeedCount) { isHighSpeed = true; }
         foreach (NotificationBar notification in activeNotification_)
@@ -51,7 +51,7 @@ public class NotificationBarManager : MonoBehaviourSingleton<NotificationBarMana
             notification.IsHighSpeed = isHighSpeed;
         }
 
-        // ŠJ•ÂƒAƒjƒ[ƒVƒ‡ƒ“’†‚Ìê‡ƒŒƒCƒAƒEƒg‚ğXV
+        // é–‹é–‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­ã®å ´åˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’æ›´æ–°
         foreach (NotificationBar notification in activeNotification_)
         {
             if (notification.CurrentOpenState == OpenAndCloseBase.OpenState.OpenAnim || notification.CurrentOpenState == OpenAndCloseBase.OpenState.CloseAnim)
@@ -66,7 +66,7 @@ public class NotificationBarManager : MonoBehaviourSingleton<NotificationBarMana
     }
 
     /// <summary>
-    /// ’Ê’m’Ç‰Á
+    /// é€šçŸ¥è¿½åŠ 
     /// </summary>
     public void AddNotification(string title, string message)
     {
@@ -79,18 +79,18 @@ public class NotificationBarManager : MonoBehaviourSingleton<NotificationBarMana
     }
 
     /// <summary>
-    /// ‘S‚Ä‚Ì’Ê’m‚ğíœ‚·‚é
+    /// å…¨ã¦ã®é€šçŸ¥ã‚’å‰Šé™¤ã™ã‚‹
     /// </summary>
     public void ClearAll()
     {
-        // •\¦’†‚Ì’Ê’m‚ğ•Â‚¶‚é
+        // è¡¨ç¤ºä¸­ã®é€šçŸ¥ã‚’é–‰ã˜ã‚‹
         activeNotification_.Remove(null);
         foreach (NotificationBar notification in activeNotification_.ToArray())
         {
             notification.Close();
         }
 
-        // ƒLƒ…[‚É—­‚Ü‚Á‚Ä‚¢‚é’Ê’m‚ğíœ‚·‚é
+        // ã‚­ãƒ¥ãƒ¼ã«æºœã¾ã£ã¦ã„ã‚‹é€šçŸ¥ã‚’å‰Šé™¤ã™ã‚‹
         foreach (NotificationBar notification in notificationQueue_.ToArray())
         {
             if (notification != null)

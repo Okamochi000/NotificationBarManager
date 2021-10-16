@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 public class AutoNotificationSample : MonoBehaviour
@@ -16,8 +16,8 @@ public class AutoNotificationSample : MonoBehaviour
 
         if (num != nextNum)
         {
-            string message = String.Format("‚±‚ÌƒƒbƒZ[ƒW‚Í[{0}]‚É‘—M‚³‚ê‚Ü‚µ‚½\n\nƒƒbƒZ[ƒW‚ÍƒLƒ…[‚É—­‚Ü‚è‚Ü‚·", DateTime.Now);
-            NotificationBarManager.Instance.AddNotification("ƒeƒXƒg", message);
+            string message = String.Format("ã“ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯[{0}]ã«é€ä¿¡ã•ã‚Œã¾ã—ãŸ\n\nãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯ã‚­ãƒ¥ãƒ¼ã«æºœã¾ã‚Šã¾ã™", DateTime.Now);
+            NotificationBarManager.Instance.AddNotification("ãƒ†ã‚¹ãƒˆ", message);
         }
     }
 }
